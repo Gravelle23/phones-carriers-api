@@ -3,7 +3,7 @@ const { initDb } = require("./data/database");
 const routes = require("./routes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDoc = require("./swagger/swagger.json");
-const errorHandler = require("../middleware/errorHandler");
+const errorHandler = require("./middleware/errorHandler");
 
 require("dotenv").config();
 
