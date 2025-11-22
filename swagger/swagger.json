@@ -1,0 +1,173 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Phones + Carriers API",
+    "version": "1.0.0",
+    "description": "CRUD API for phones and mobile carriers."
+  },
+  "servers": [
+    { "url": "http://localhost:3000", "description": "Local server" }
+  ],
+  "paths": {
+    "/phones": {
+      "get": {
+        "summary": "Get all phones",
+        "responses": {
+          "200": { "description": "List of phones" }
+        }
+      },
+      "post": {
+        "summary": "Create a phone",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Phone" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Phone created" },
+          "400": { "description": "Validation error" }
+        }
+      }
+    },
+    "/phones/{id}": {
+      "get": {
+        "summary": "Get phone by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Phone found" },
+          "404": { "description": "Phone not found" }
+        }
+      },
+      "put": {
+        "summary": "Update phone",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Phone" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Phone updated" },
+          "400": { "description": "Validation error" },
+          "404": { "description": "Phone not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete phone",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Phone deleted" },
+          "404": { "description": "Phone not found" }
+        }
+      }
+    },
+    "/carriers": {
+      "get": {
+        "summary": "Get all carriers",
+        "responses": {
+          "200": { "description": "List of carriers" }
+        }
+      },
+      "post": {
+        "summary": "Create a carrier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Carrier" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Carrier created" },
+          "400": { "description": "Validation error" }
+        }
+      }
+    },
+    "/carriers/{id}": {
+      "get": {
+        "summary": "Get carrier by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Carrier found" },
+          "404": { "description": "Carrier not found" }
+        }
+      },
+      "put": {
+        "summary": "Update carrier",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Carrier" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Carrier updated" },
+          "400": { "description": "Validation error" },
+          "404": { "description": "Carrier not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete carrier",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Carrier deleted" },
+          "404": { "description": "Carrier not found" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Phone": {
+        "type": "object",
+        "required": ["brand","model","storageGB","color","priceUSD","releaseYear","carrierId","is5G","os"],
+        "properties": {
+          "brand": { "type": "string", "example": "Apple" },
+          "model": { "type": "string", "example": "iPhone 15 Pro" },
+          "storageGB": { "type": "integer", "example": 256 },
+          "color": { "type": "string", "example": "Black Titanium" },
+          "priceUSD": { "type": "number", "example": 999 },
+          "releaseYear": { "type": "integer", "example": 2024 },
+          "carrierId": { "type": "string", "example": "64bfe9f7c9e77a3d8f6a1234" },
+          "is5G": { "type": "boolean", "example": true },
+          "os": { "type": "string", "example": "iOS" },
+          "notes": { "type": "string", "example": "Unlocked model" }
+        }
+      },
+      "Carrier": {
+        "type": "object",
+        "required": ["name","country","networkType","website","supportNumber"],
+        "properties": {
+          "name": { "type": "string", "example": "AT&T" },
+          "country": { "type": "string", "example": "USA" },
+          "networkType": { "type": "string", "example": "Mixed" },
+          "website": { "type": "string", "example": "https://www.att.com" },
+          "supportNumber": { "type": "string", "example": "800-331-0500" },
+          "notes": { "type": "string", "example": "Best coverage in cities" }
+        }
+      }
+    }
+  }
+}
