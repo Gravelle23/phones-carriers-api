@@ -13,6 +13,10 @@ app.use(express.json());
 // Swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
+app.get("/", (req, res) => {
+  res.send("Phones + Carriers API is running. Go to /api-docs");
+});
+
 // Routes
 app.use("/", routes);
 

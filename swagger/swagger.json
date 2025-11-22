@@ -6,7 +6,8 @@
     "description": "CRUD API for phones and mobile carriers."
   },
   "servers": [
-    { "url": "http://localhost:3000", "description": "Local server" }
+    { "url": "http://localhost:3000", "description": "Local server" },
+    { "url": "https://phones-carriers-api.onrender.com", "description": "Render server" }
   ],
   "paths": {
     "/phones": {
